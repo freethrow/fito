@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="sr" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Фитотерапеутско удружење Србије</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          serif: ['Newsreader', 'serif'],
+          sans: ['Manrope', 'sans-serif'],
+        },
+        colors: {
+          cream: 'oklch(0.97 0.012 95)',
+          cream2: 'oklch(0.94 0.02 110)',
+          ink: 'oklch(0.27 0.02 90)',
+          line: 'oklch(0.88 0.015 95)',
+          brand: { DEFAULT: 'oklch(0.42 0.09 145)', dark: 'oklch(0.35 0.09 145)' },
+          gold: 'oklch(0.5 0.08 55)',
+          golddot: 'oklch(0.5 0.09 55)',
+          body1: 'oklch(0.4 0.02 90)',
+          body2: 'oklch(0.38 0.02 90)',
+          body3: 'oklch(0.42 0.02 90)',
+          body4: 'oklch(0.45 0.02 90)',
+          sage: 'oklch(0.42 0.03 140)',
+          heading: 'oklch(0.3 0.05 140)',
+          card: 'oklch(0.99 0.005 95)',
+          dark: 'oklch(0.24 0.02 100)',
+          darktext: 'oklch(0.92 0.01 95)',
+          darkaccent: 'oklch(0.75 0.08 140)',
+          member: 'oklch(0.9 0.035 140)',
+          membertext: 'oklch(0.32 0.03 140)',
+          outline: 'oklch(0.8 0.02 90)',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  body { margin: 0; }
+  a.brand-link { color: oklch(0.42 0.09 145); text-decoration: none; }
+  a.brand-link:hover { color: oklch(0.35 0.09 145); }
+</style>
+</head>
+<body class="font-sans text-ink bg-cream min-h-screen">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-20 bg-cream border-b border-line">
+    <div class="flex items-center justify-between gap-4 px-5 py-4 md:px-12 md:py-[22px]">
+      <a href="#" class="flex items-center gap-3 md:gap-[14px]">
+        <img src="logo.svg" width="42" height="42" alt="Лого удружења" class="block w-9 h-9 md:w-[42px] md:h-[42px]"/>
+        <span class="font-serif text-base md:text-[18px] font-semibold leading-tight text-ink">Фитотерапеутско удружење Србије</span>
+      </a>
+
+      <!-- Desktop links -->
+      <nav class="hidden xl:flex flex-wrap items-center gap-[22px] text-sm font-bold tracking-wide">
+        <a href="#about" class="brand-link">О нама</a>
+        <a href="#herbs" class="brand-link">Биље</a>
+        <a href="#mythology" class="brand-link">Митологија</a>
+        <a href="#map" class="brand-link">Енергетски кодови</a>
+        <a href="#education" class="brand-link">Едукације</a>
+        <a href="#blog" class="brand-link">Блог</a>
+        <a href="#shop" class="brand-link">Апотека</a>
+        <a href="#membership" class="brand-link">Чланство</a>
+        <a href="#contact" class="brand-link">Контакт</a>
+      </nav>
+
+      <!-- Hamburger button -->
+      <button id="menu-btn" type="button" aria-label="Отвори мени" aria-expanded="false" class="xl:hidden flex flex-col justify-center items-center w-9 h-9 shrink-0 gap-[5px]">
+        <span class="menu-bar block w-6 h-[2px] bg-ink transition-transform duration-200"></span>
+        <span class="menu-bar block w-6 h-[2px] bg-ink transition-opacity duration-200"></span>
+        <span class="menu-bar block w-6 h-[2px] bg-ink transition-transform duration-200"></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <nav id="mobile-menu" class="hidden xl:hidden flex-col gap-1 px-5 pb-5 text-base font-bold tracking-wide">
+      <a href="#about" class="mobile-link brand-link block py-2 border-b border-line">О нама</a>
+      <a href="#herbs" class="mobile-link brand-link block py-2 border-b border-line">Биље</a>
+      <a href="#mythology" class="mobile-link brand-link block py-2 border-b border-line">Митологија</a>
+      <a href="#map" class="mobile-link brand-link block py-2 border-b border-line">Енергетски кодови</a>
+      <a href="#education" class="mobile-link brand-link block py-2 border-b border-line">Едукације</a>
+      <a href="#blog" class="mobile-link brand-link block py-2 border-b border-line">Блог</a>
+      <a href="#shop" class="mobile-link brand-link block py-2 border-b border-line">Апотека</a>
+      <a href="#membership" class="mobile-link brand-link block py-2 border-b border-line">Чланство</a>
+      <a href="#contact" class="mobile-link brand-link block py-2">Контакт</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="relative overflow-hidden">
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" style="filter: saturate(0.7) brightness(0.95) sepia(0.08);">
+      <source src="video.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0" style="background: oklch(0.97 0.012 95 / 0.82);"></div>
+    <div class="relative flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 px-5 py-16 md:px-14 md:py-[80px] md:pb-[60px] max-w-[1200px] mx-auto text-center lg:text-left">
+      <div class="shrink-0">
+        <img src="logo.svg" width="300" height="300" alt="Лого — Фитотерапеутско удружење Србије" class="w-[180px] h-[180px] md:w-[300px] md:h-[300px]"/>
+      </div>
+      <div class="max-w-[480px]">
+        <div class="text-[13px] md:text-sm font-bold tracking-[1.5px] uppercase text-gold mb-4">Фитотерапија, етноботаника и енергетска баштина Србије</div>
+        <h1 class="font-serif text-[30px] md:text-[42px] leading-[1.15] font-medium mb-5">Биљке нису само лек — оне су мудрост, мит, енергија.</h1>
+        <p class="text-[15px] md:text-base leading-[1.65] text-body1 mb-3">
+          У времену убрзаног живота, отуђености од природе и све веће употребе хемијских лекова, оснивање удружења за фитотерапију представља важан корак ка очувању здравља, традиције и природних ресурса Србије.
+        </p>
+        <p class="text-[14px] md:text-[15px] leading-[1.6] text-sage italic mb-7">
+          Спој науке, традиције, митологије и духовности биља, као и енергетске мапе Србије.
+        </p>
+        <a href="#membership" class="inline-block bg-brand text-cream px-7 py-[14px] rounded font-semibold text-[15px]">Придружи нам се</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- O NAMA -->
+  <div id="about" class="scroll-mt-20 bg-cream2 px-5 py-16 md:px-14 md:py-[80px]">
+    <div class="max-w-[820px] mx-auto">
+      <h2 class="font-serif text-[26px] md:text-[30px] font-medium mb-6 text-center">О нама / Мисија и визија</h2>
+      <p class="text-[15px] md:text-base leading-[1.75] text-body2 mb-[18px]">Циљ удружења је да промовише, едукује и подстакне употребу лековитог биља у свакодневном животу, као и да очува богату традицију народне медицине и знања које се вековима преносило усменим путем – од травара, бака, монаха и чувара биљне мудрости.</p>
+      <p class="text-[15px] md:text-base leading-[1.75] text-body2 mb-[30px]">Србија, као земља изузетне биоразноликости, поседује преко 700 регистрованих врста лековитих биљака, од којих многе расту само на специфичним локалитетима – Тара, Стара планина, Радан, Пештер, Ртањ, Копаоник, Фрушка гора… То је наше зелено благо, које захтева очување, одговорну бербу, едукацију и примену у савременом контексту.</p>
+      <div class="font-bold text-[17px] mb-4">Удружење ће се залагати за:</div>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-4">
+        <div class="flex gap-3 items-start">
+          <div class="w-[7px] h-[7px] rounded-full bg-golddot mt-2 shrink-0"></div>
+          <div class="text-[15px] leading-[1.55] text-body2">Едукацију грађана о безбедној и правилној употреби лековитог биља</div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-[7px] h-[7px] rounded-full bg-golddot mt-2 shrink-0"></div>
+          <div class="text-[15px] leading-[1.55] text-body2">Повезивање са траварима, биолозима, фармацеутима и здравственим радницима</div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-[7px] h-[7px] rounded-full bg-golddot mt-2 shrink-0"></div>
+          <div class="text-[15px] leading-[1.55] text-body2">Организацију радионица, предавања, фестивала биља и теренских истраживања</div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-[7px] h-[7px] rounded-full bg-golddot mt-2 shrink-0"></div>
+          <div class="text-[15px] leading-[1.55] text-body2">Заступање интереса природне медицине пред институцијама и законодавцима</div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-[7px] h-[7px] rounded-full bg-golddot mt-2 shrink-0"></div>
+          <div class="text-[15px] leading-[1.55] text-body2">Креирање биљне мапе Србије и документовање традиционалних рецепата</div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-[7px] h-[7px] rounded-full bg-golddot mt-2 shrink-0"></div>
+          <div class="text-[15px] leading-[1.55] text-body2">Подстицање младих да се врате природи и заволе биљни свет</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PULL QUOTE -->
+  <div class="px-5 py-16 md:px-14 md:py-[72px] max-w-[760px] mx-auto text-center">
+    <p class="font-serif italic text-[20px] md:text-2xl leading-[1.5] text-heading mb-5">Фитотерапија није само знање – то је начин живота. То је враћање себи, корену и земљи.</p>
+    <p class="text-[15px] md:text-[15.5px] leading-[1.7] text-body3">Удружење ће радити за оне који верују у снагу биљака, за оне који траже баланс између тела и духа, и за будуће генерације које заслужују да природу упознају – не само кроз слике, већ кроз додир, мирис и деловање.</p>
+  </div>
+
+  <!-- ZASTO JE VAZNA -->
+  <div class="bg-cream2 px-5 py-16 md:px-14 md:py-[88px]">
+    <div class="max-w-[1100px] mx-auto">
+      <h2 class="font-serif text-[26px] md:text-[30px] font-medium mb-4 text-center">Зашто је фитотерапија важна</h2>
+      <p class="text-[15px] md:text-[15.5px] leading-[1.7] text-body3 max-w-[760px] mx-auto mb-10 text-center">Очување свести о фитотерапији (лечењу биљем) важно је из више разлога — здравствених, културних, еколошких и духовних.</p>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-8">
+        <div>
+          <div class="font-serif text-[18px] font-semibold mb-2 text-heading">1. Природни приступ здрављу</div>
+          <div class="text-[14.5px] leading-[1.6] text-body3">Фитотерапија подстиче холистички приступ лечењу, где се не третира само симптом, већ се тежи успостављању баланса целог тела. Биљке не нарушавају природне процесе организма, већ их подржавају.</div>
+        </div>
+        <div>
+          <div class="font-serif text-[18px] font-semibold mb-2 text-heading">2. Пренос древног знања</div>
+          <div class="text-[14.5px] leading-[1.6] text-body3">Фитотерапија се ослања на миленијумска искуства и мудрост предака. Очување тог знања значи очување културног идентитета, традиције народа и мудрости које су преживеле векове.</div>
+        </div>
+        <div>
+          <div class="font-serif text-[18px] font-semibold mb-2 text-heading">3. Заштита биљног света</div>
+          <div class="text-[14.5px] leading-[1.6] text-body3">Кад ценимо лековите биљке, учимо да их не исцрпљујемо, већ чувамо. Фитотерапија нас учи одрживом коришћењу природних ресурса и повезује нас са еколошком свешћу.</div>
+        </div>
+        <div>
+          <div class="font-serif text-[18px] font-semibold mb-2 text-heading">4. Приступачност лечења</div>
+          <div class="text-[14.5px] leading-[1.6] text-body3">Биље је често приступачније и јефтиније од фармацеутских лекова. За многе људе, посебно у руралним крајевима, то је једини доступни вид помоћи.</div>
+        </div>
+        <div>
+          <div class="font-serif text-[18px] font-semibold mb-2 text-heading">5. Самосталност и знање</div>
+          <div class="text-[14.5px] leading-[1.6] text-body3">Знање о фитотерапији враћа моћ појединцу. Када знамо како да себи помогнемо природним путем, смањујемо зависност од система, лекара и фармације.</div>
+        </div>
+        <div>
+          <div class="font-serif text-[18px] font-semibold mb-2 text-heading">6. Повезаност са природом</div>
+          <div class="text-[14.5px] leading-[1.6] text-body3">У савременом свету који је све више дигиталан и одвојен од природе, фитотерапија нас повезује са земљом, ритмовима природе, циклусима. Она буди поштовање, нежност и дубље разумевање живота.</div>
+        </div>
+        <div>
+          <div class="font-serif text-[18px] font-semibold mb-2 text-heading">7. Здравствена превентива</div>
+          <div class="text-[14.5px] leading-[1.6] text-body3">Фитотерапија није само лечење, већ и превентива — јачање имунитета, детоксикација организма, баланс хормона, бољи сан, здравији дигестивни систем… Често може спречити појаву тежих болести.</div>
+        </div>
+        <div>
+          <div class="font-serif text-[18px] font-semibold mb-2 text-heading">8. Душевни мир и духовност</div>
+          <div class="text-[14.5px] leading-[1.6] text-body3">Рад са биљкама може имати и терапијски и духовни ефекат. Биље нас позива на успоравање, присутност, слушање. Очување фитотерапије значи очување живог дијалога човека и природе.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ZASTO BAS UDRUZENJE -->
+  <div class="px-5 py-16 md:px-14 md:py-[88px] max-w-[1100px] mx-auto">
+    <h2 class="font-serif text-[26px] md:text-[30px] font-medium mb-2 text-center">Зашто баш удружење за фитотерапију?</h2>
+    <div class="text-center text-base italic text-sage mb-[18px]">Повратак природи, знању и целовитом здрављу</div>
+    <p class="text-[15px] md:text-[15.5px] leading-[1.7] text-body3 max-w-[760px] mx-auto mb-11 text-center">У времену када савремени човек тражи начине да се врати себи, природи и свом телу — фитотерапија нуди тихи, али моћни пут исцељења. Оснивањем удружења за фитотерапију, желимо да:</p>
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-9">
+      <div>
+        <div class="font-bold text-[17px] mb-2">1. Сачувамо и преносимо древно знање</div>
+        <div class="text-[14.5px] leading-[1.6] text-body3 mb-[10px]">Фитотерапија није нова наука. То је вековно искуство народа који су знали да биљке говоре. Удружење има за циљ да:</div>
+        <ul class="m-0 pl-[18px] text-sm leading-[1.7] text-body2 list-disc">
+          <li>Прикупља и документује народно биљно знање</li>
+          <li>Повезује стручњаке из области медицине, ботанике, фармације, биологије и етнологије</li>
+          <li>Организује радионице и едукације</li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-bold text-[17px] mb-2">2. Едукујемо и оснажимо заједницу</div>
+        <div class="text-[14.5px] leading-[1.6] text-body3 mb-[10px]">Знање о лековитом биљу треба да буде приступачно свима. Кроз наше активности:</div>
+        <ul class="m-0 pl-[18px] text-sm leading-[1.7] text-body2 list-disc">
+          <li>Организујемо курсеве фитотерапије за све узрасте</li>
+          <li>Промовишемо здрав стил живота</li>
+          <li>Помажемо људима да сами препознају и правилно користе лековите биљке</li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-bold text-[17px] mb-2">3. Штитимо природу и биљне врсте</div>
+        <div class="text-[14.5px] leading-[1.6] text-body3 mb-[10px]">Очување биља значи очување живота. Удружење ће:</div>
+        <ul class="m-0 pl-[18px] text-sm leading-[1.7] text-body2 list-disc">
+          <li>Спроводити кампање за очување ендемских и угрожених биљних врста</li>
+          <li>Радити на мапирању биља по регијама Србије</li>
+          <li>Сарадњом са институцијама допринети одрживом коришћењу природних ресурса</li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-bold text-[17px] mb-2">4. Повежемо људе</div>
+        <div class="text-[14.5px] leading-[1.6] text-body3 mb-[10px]">Желимо да окупимо:</div>
+        <ul class="m-0 pl-[18px] text-sm leading-[1.7] text-body2 list-disc">
+          <li>Фитотерапеуте и алтернативне практичаре</li>
+          <li>Пољопривреднике и бераче биља</li>
+          <li>Научнике и ентузијасте</li>
+          <li>Младе који желе да уче и стварају</li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-bold text-[17px] mb-2">5. Подигнемо свест о целовитом здрављу</div>
+        <div class="text-[14.5px] leading-[1.6] text-body3">Здравље није само одсуство болести. То је баланс тела, ума и духа. Фитотерапија је мост између природе и здравља.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FITOTERAPIJA / LEKOVITE BILJKE -->
+  <div id="herbs" class="scroll-mt-20 bg-cream2 px-5 py-16 md:px-14 md:py-[88px]">
+    <div class="max-w-[1000px] mx-auto">
+      <h2 class="font-serif text-[26px] md:text-[30px] font-medium mb-9 text-center">Фитотерапија / Лековите биљке</h2>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-6">
+        <div class="bg-card border border-line rounded-lg p-[22px]">
+          <div class="font-bold text-base">Алфабетни водич – описи биљака, како се користе, где расту</div>
+        </div>
+        <div class="bg-card border border-line rounded-lg p-[22px]">
+          <div class="font-bold text-base">Здравље и биље – биље по тегобама (нпр. несаница, кожа, имунитет)</div>
+        </div>
+        <div class="bg-card border border-line rounded-lg p-[22px]">
+          <div class="font-bold text-base">Народни рецепти</div>
+        </div>
+        <div class="bg-card border border-line rounded-lg p-[22px]">
+          <div class="font-bold text-base">Упозорења и контраиндикације</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MITOLOGIJA -->
+  <div id="mythology" class="scroll-mt-20 px-5 py-16 md:px-14 md:py-[88px] max-w-[1000px] mx-auto">
+    <h2 class="font-serif text-[26px] md:text-[30px] font-medium mb-5 text-center">Митологија и симболика биља</h2>
+    <p class="text-[15px] md:text-[15.5px] leading-[1.7] text-body1 text-center max-w-[700px] mx-auto mb-3">Биљке у српским митовима и народним предањима.</p>
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-6 my-8">
+      <div class="text-center px-[18px] py-[26px] bg-card border border-line rounded-lg">
+        <div class="font-serif italic text-lg mb-2">Босиљак</div>
+        <div class="text-sm text-body4">Света биљка</div>
+      </div>
+      <div class="text-center px-[18px] py-[26px] bg-card border border-line rounded-lg">
+        <div class="font-serif italic text-lg mb-2">Перуника</div>
+        <div class="text-sm text-body4">Цвет грома</div>
+      </div>
+      <div class="text-center px-[18px] py-[26px] bg-card border border-line rounded-lg">
+        <div class="font-serif italic text-lg mb-2">Глог</div>
+        <div class="text-sm text-body4">Заштита од зла</div>
+      </div>
+    </div>
+    <p class="text-[14.5px] leading-[1.7] text-body4 text-center max-w-[700px] mx-auto">Биљке у словенској духовности. Астролошке и архетипске повезаности.</p>
+  </div>
+
+  <!-- ENERGETSKI KODOVI -->
+  <div id="map" class="scroll-mt-20 bg-dark text-darktext px-5 py-16 md:px-14 md:py-[88px]">
+    <div class="max-w-[1000px] mx-auto">
+      <h2 class="font-serif text-[26px] md:text-[30px] font-medium mb-5 text-center">Енергетски кодови и светле тачке Србије</h2>
+      <p class="text-[15px] leading-[1.7] opacity-80 text-center max-w-[700px] mx-auto mb-10">Мапа Србије са енергетски важним локалитетима.</p>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-7 mb-8">
+        <div>
+          <div class="font-bold text-base mb-2 text-darkaccent">Ртањ</div>
+          <div class="text-sm leading-[1.55] opacity-85">Планина високе фреквенције</div>
+        </div>
+        <div>
+          <div class="font-bold text-base mb-2 text-darkaccent">Стара планина</div>
+          <div class="text-sm leading-[1.55] opacity-85">Вода, биље и мит</div>
+        </div>
+        <div>
+          <div class="font-bold text-base mb-2 text-darkaccent">Ђавоља варош</div>
+          <div class="text-sm leading-[1.55] opacity-85">Земљина памћење</div>
+        </div>
+        <div>
+          <div class="font-bold text-base mb-2 text-darkaccent">Копаоник</div>
+          <div class="text-sm leading-[1.55] opacity-85">„Планина светлости"</div>
+        </div>
+      </div>
+      <p class="text-sm opacity-75 text-center">+ интерактивна мапа са подацима о лековитом биљу по регијама</p>
+    </div>
+  </div>
+
+  <!-- EDUKACIJE -->
+  <div id="education" class="scroll-mt-20 px-5 py-16 md:px-14 md:py-[80px] max-w-[900px] mx-auto text-center">
+    <h2 class="font-serif text-[26px] md:text-[30px] font-medium mb-8">Едукације и догађаји</h2>
+    <div class="flex flex-wrap gap-[14px] justify-center">
+      <div class="border-[1.5px] border-outline rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-heading">Онлајн курсеви фитотерапије</div>
+      <div class="border-[1.5px] border-outline rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-heading">Теренске радионице: брање и сушење биља</div>
+      <div class="border-[1.5px] border-outline rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-heading">Душевно биље – медитација уз биљке</div>
+      <div class="border-[1.5px] border-outline rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-heading">Предавања из области етноботанике и древне медицине</div>
+    </div>
+  </div>
+
+  <!-- BLOG -->
+  <div id="blog" class="scroll-mt-20 bg-cream2 px-5 py-16 md:px-14 md:py-[80px] max-w-[900px] mx-auto text-center">
+    <h2 class="font-serif text-[26px] md:text-[30px] font-medium mb-8">Блог / Новости</h2>
+    <div class="flex flex-wrap gap-[14px] justify-center">
+      <div class="border-[1.5px] border-outline rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-heading max-w-[280px]">Савети, истраживања, народне приче</div>
+      <div class="border-[1.5px] border-outline rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-heading max-w-[280px]">Сезонски текстови о биљу (нпр. „Пролећно чишћење јетре биљкама из дворишта")</div>
+      <div class="border-[1.5px] border-outline rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-heading max-w-[280px]">Интервјуи са стручњацима</div>
+    </div>
+  </div>
+
+  <!-- SHOP -->
+  <div id="shop" class="scroll-mt-20 px-5 py-16 md:px-14 md:py-[80px] max-w-[900px] mx-auto text-center">
+    <h2 class="font-serif text-[26px] md:text-[30px] font-medium mb-8">Биљна апотека (онлајн шоп)</h2>
+    <div class="flex flex-wrap gap-[14px] justify-center">
+      <div class="border-[1.5px] border-outline rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-heading max-w-[280px]">Чајеви, тинктуре, мелеми (по закону: инфо карактер, без здравствених тврдњи)</div>
+      <div class="border-[1.5px] border-outline rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-heading max-w-[280px]">Едукативни материјал (књиге, брошуре)</div>
+      <div class="border-[1.5px] border-outline rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-heading max-w-[280px]">Приступ затвореним предавањима</div>
+    </div>
+  </div>
+
+  <!-- CLANSTVO -->
+  <div id="membership" class="scroll-mt-20 bg-member px-5 py-16 md:px-14 md:py-[80px]">
+    <div class="max-w-[900px] mx-auto text-center">
+      <h2 class="font-serif text-[26px] md:text-[30px] font-medium mb-5">Чланство и волонтери</h2>
+      <div class="flex flex-wrap gap-[14px] justify-center mb-9">
+        <div class="bg-card rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-membertext max-w-[280px]">Како постати члан Друштва</div>
+        <div class="bg-card rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-membertext max-w-[280px]">Могућност волонтирања на теренским истраживањима</div>
+        <div class="bg-card rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold text-membertext max-w-[280px]">Приступ затвореним базама знања</div>
+      </div>
+      <p class="font-serif text-xl italic text-heading mb-3">Постани део покрета</p>
+      <p class="text-[15px] md:text-[15.5px] leading-[1.6] text-membertext max-w-[600px] mx-auto mb-3">Ако верујеш у моћ биља, у вредност знања предака и у лепоту једноставног, здравог живота — придружи нам се.</p>
+      <p class="text-[15px] leading-[1.6] text-membertext max-w-[600px] mx-auto mb-7">Буди део удружења које чува, подучава и штити.</p>
+      <a href="#contact" class="inline-block bg-brand text-cream px-8 py-[14px] rounded font-semibold text-[15px]">Придружи нам се</a>
+    </div>
+  </div>
+
+  <!-- KONTAKT -->
+  <div id="contact" class="scroll-mt-20 bg-dark text-darktext px-5 py-12 md:px-14 md:py-[56px]">
+    <div class="max-w-[900px] mx-auto">
+      <div class="font-serif text-xl mb-5">Контакт и сарадња</div>
+      <div class="flex flex-col md:flex-row flex-wrap gap-4 md:gap-8 text-[14.5px] opacity-85">
+        <div>Контакт форма</div>
+        <div>Локација Друштва (ако постоји физичко седиште)</div>
+        <div>Партнери, донације, сарадње са школама, општинама, факултетима</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const bars = menuBtn.querySelectorAll('.menu-bar');
+
+  function closeMenu() {
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('flex');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    bars[0].style.transform = '';
+    bars[1].style.opacity = '1';
+    bars[2].style.transform = '';
+  }
+
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('flex');
+    mobileMenu.classList.toggle('hidden', !isOpen);
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) {
+      bars[0].style.transform = 'translateY(7px) rotate(45deg)';
+      bars[1].style.opacity = '0';
+      bars[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+    } else {
+      closeMenu();
+    }
+  });
+
+  document.querySelectorAll('.mobile-link').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
+
+</body>
+</html>

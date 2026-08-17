@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #e9e5da; }
+    doc-page:not(:defined) { visibility: hidden; }
+    h1, h2, h3 { font-family: 'Newsreader', serif; color: oklch(0.27 0.02 90); }
+    p, li { font-family: 'Manrope', sans-serif; color: oklch(0.3 0.02 90); }
+    a { color: oklch(0.42 0.09 145); }
+  </style>
+  <script>
+    addEventListener('load', () => {
+      (async () => {
+        try { await document.fonts.ready; } catch (e) {}
+        const imgs = Array.from(document.images).filter((i) => !i.complete);
+        await Promise.race([
+          Promise.allSettled(imgs.map((i) => i.decode())),
+          new Promise((r) => setTimeout(r, 8000)),
+        ]);
+        setTimeout(() => window.print(), 500);
+      })();
+    });
+  </script>
+</helmet>
+
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="letter" margin="0.75in" hint-size="100%,1100px">
+
+  <div style="display:flex; align-items:center; gap:18px; margin-bottom:8px;">
+    <img src="logo.svg" width="72" height="72" alt="Лого удружења"/>
+    <div>
+      <div style="font-size:13px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:oklch(0.5 0.08 55);">Фитотерапија, етноботаника и енергетска баштина Србије</div>
+      <h1 style="font-size:26px; font-weight:600; margin:4px 0 0;">Фитотерапеутско удружење Србије</h1>
+    </div>
+  </div>
+
+  <p style="font-size:15px; line-height:1.6; font-style:italic; color:oklch(0.42 0.03 140); margin:0 0 28px;">Биљке нису само лек — оне су мудрост, мит, енергија.</p>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">О нама / Мисија и визија</h2>
+  <p style="font-size:13.5px; line-height:1.6; margin:0 0 12px;">Циљ удружења је да промовише, едукује и подстакне употребу лековитог биља у свакодневном животу, као и да очува богату традицију народне медицине и знања које се вековима преносило усменим путем – од травара, бака, монаха и чувара биљне мудрости.</p>
+  <p style="font-size:13.5px; line-height:1.6; margin:0 0 12px;">Србија, као земља изузетне биоразноликости, поседује преко 700 регистрованих врста лековитих биљака, од којих многе расту само на специфичним локалитетима – Тара, Стара планина, Радан, Пештер, Ртањ, Копаоник, Фрушка гора… То је наше зелено благо, које захтева очување, одговорну бербу, едукацију и примену у савременом контексту.</p>
+  <p style="font-size:13.5px; font-weight:700; margin:16px 0 8px;">Удружење ће се залагати за:</p>
+  <ul style="font-size:13.5px; line-height:1.65; margin:0 0 20px; padding-left:20px;">
+    <li>Едукацију грађана о безбедној и правилној употреби лековитог биља</li>
+    <li>Повезивање са траварима, биолозима, фармацеутима и здравственим радницима</li>
+    <li>Организацију радионица, предавања, фестивала биља и теренских истраживања</li>
+    <li>Заступање интереса природне медицине пред институцијама и законодавцима</li>
+    <li>Креирање биљне мапе Србије и документовање традиционалних рецепата</li>
+    <li>Подстицање младих да се врате природи и заволе биљни свет</li>
+  </ul>
+
+  <blockquote style="margin:0 0 24px; padding:14px 18px; border-left:3px solid oklch(0.5 0.09 55); background:oklch(0.96 0.015 100); break-inside:avoid;">
+    <p style="font-size:15px; font-style:italic; margin:0 0 8px; font-family:'Newsreader', serif;">Фитотерапија није само знање – то је начин живота. То је враћање себи, корену и земљи.</p>
+    <p style="font-size:13px; line-height:1.6; margin:0;">Удружење ће радити за оне који верују у снагу биљака, за оне који траже баланс између тела и духа, и за будуће генерације које заслужују да природу упознају – не само кроз слике, већ кроз додир, мирис и деловање.</p>
+  </blockquote>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">Зашто је фитотерапија важна</h2>
+  <p style="font-size:13.5px; line-height:1.6; margin:0 0 14px;">Очување свести о фитотерапији (лечењу биљем) важно је из више разлога — здравствених, културних, еколошких и духовних.</p>
+  <div style="margin:0 0 20px;">
+    <div style="break-inside:avoid; margin-bottom:12px;"><strong style="font-size:13.5px; font-family:'Newsreader', serif;">1. Природни приступ здрављу</strong><p style="font-size:13px; line-height:1.55; margin:4px 0 0;">Фитотерапија подстиче холистички приступ лечењу, где се не третира само симптом, већ се тежи успостављању баланса целог тела. Биљке не нарушавају природне процесе организма, већ их подржавају.</p></div>
+    <div style="break-inside:avoid; margin-bottom:12px;"><strong style="font-size:13.5px; font-family:'Newsreader', serif;">2. Пренос древног знања</strong><p style="font-size:13px; line-height:1.55; margin:4px 0 0;">Фитотерапија се ослања на миленијумска искуства и мудрост предака. Очување тог знања значи очување културног идентитета, традиције народа и мудрости које су преживеле векове.</p></div>
+    <div style="break-inside:avoid; margin-bottom:12px;"><strong style="font-size:13.5px; font-family:'Newsreader', serif;">3. Заштита биљног света</strong><p style="font-size:13px; line-height:1.55; margin:4px 0 0;">Кад ценимо лековите биљке, учимо да их не исцрпљујемо, већ чувамо. Фитотерапија нас учи одрживом коришћењу природних ресурса и повезује нас са еколошком свешћу.</p></div>
+    <div style="break-inside:avoid; margin-bottom:12px;"><strong style="font-size:13.5px; font-family:'Newsreader', serif;">4. Приступачност лечења</strong><p style="font-size:13px; line-height:1.55; margin:4px 0 0;">Биље је често приступачније и јефтиније од фармацеутских лекова. За многе људе, посебно у руралним крајевима, то је једини доступни вид помоћи.</p></div>
+    <div style="break-inside:avoid; margin-bottom:12px;"><strong style="font-size:13.5px; font-family:'Newsreader', serif;">5. Самосталност и знање</strong><p style="font-size:13px; line-height:1.55; margin:4px 0 0;">Знање о фитотерапији враћа моћ појединцу. Када знамо како да себи помогнемо природним путем, смањујемо зависност од система, лекара и фармације.</p></div>
+    <div style="break-inside:avoid; margin-bottom:12px;"><strong style="font-size:13.5px; font-family:'Newsreader', serif;">6. Повезаност са природом</strong><p style="font-size:13px; line-height:1.55; margin:4px 0 0;">У савременом свету који је све више дигиталан и одвојен од природе, фитотерапија нас повезује са земљом, ритмовима природе, циклусима. Она буди поштовање, нежност и дубље разумевање живота.</p></div>
+    <div style="break-inside:avoid; margin-bottom:12px;"><strong style="font-size:13.5px; font-family:'Newsreader', serif;">7. Здравствена превентива</strong><p style="font-size:13px; line-height:1.55; margin:4px 0 0;">Фитотерапија није само лечење, већ и превентива — јачање имунитета, детоксикација организма, баланс хормона, бољи сан, здравији дигестивни систем… Често може спречити појаву тежих болести.</p></div>
+    <div style="break-inside:avoid; margin-bottom:12px;"><strong style="font-size:13.5px; font-family:'Newsreader', serif;">8. Душевни мир и духовност</strong><p style="font-size:13px; line-height:1.55; margin:4px 0 0;">Рад са биљкама може имати и терапијски и духовни ефекат. Биље нас позива на успоравање, присутност, слушање. Очување фитотерапије значи очување живог дијалога човека и природе.</p></div>
+  </div>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">Зашто баш удружење за фитотерапију?</h2>
+  <p style="font-size:14px; font-style:italic; margin:0 0 10px;">Повратак природи, знању и целовитом здрављу</p>
+  <p style="font-size:13.5px; line-height:1.6; margin:0 0 14px;">У времену када савремени човек тражи начине да се врати себи, природи и свом телу — фитотерапија нуди тихи, али моћни пут исцељења. Оснивањем удружења за фитотерапију, желимо да:</p>
+
+  <div style="break-inside:avoid; margin-bottom:14px;">
+    <strong style="font-size:14px;">1. Сачувамо и преносимо древно знање</strong>
+    <p style="font-size:13px; line-height:1.55; margin:4px 0 6px;">Фитотерапија није нова наука. То је вековно искуство народа који су знали да биљке говоре. Удружење има за циљ да:</p>
+    <ul style="font-size:13px; line-height:1.6; margin:0; padding-left:20px;">
+      <li>Прикупља и документује народно биљно знање</li>
+      <li>Повезује стручњаке из области медицине, ботанике, фармације, биологије и етнологије</li>
+      <li>Организује радионице и едукације</li>
+    </ul>
+  </div>
+  <div style="break-inside:avoid; margin-bottom:14px;">
+    <strong style="font-size:14px;">2. Едукујемо и оснажимо заједницу</strong>
+    <p style="font-size:13px; line-height:1.55; margin:4px 0 6px;">Знање о лековитом биљу треба да буде приступачно свима. Кроз наше активности:</p>
+    <ul style="font-size:13px; line-height:1.6; margin:0; padding-left:20px;">
+      <li>Организујемо курсеве фитотерапије за све узрасте</li>
+      <li>Промовишемо здрав стил живота</li>
+      <li>Помажемо људима да сами препознају и правилно користе лековите биљке</li>
+    </ul>
+  </div>
+  <div style="break-inside:avoid; margin-bottom:14px;">
+    <strong style="font-size:14px;">3. Штитимо природу и биљне врсте</strong>
+    <p style="font-size:13px; line-height:1.55; margin:4px 0 6px;">Очување биља значи очување живота. Удружење ће:</p>
+    <ul style="font-size:13px; line-height:1.6; margin:0; padding-left:20px;">
+      <li>Спроводити кампање за очување ендемских и угрожених биљних врста</li>
+      <li>Радити на мапирању биља по регијама Србије</li>
+      <li>Сарадњом са институцијама допринети одрживом коришћењу природних ресурса</li>
+    </ul>
+  </div>
+  <div style="break-inside:avoid; margin-bottom:14px;">
+    <strong style="font-size:14px;">4. Повежемо људе</strong>
+    <p style="font-size:13px; line-height:1.55; margin:4px 0 6px;">Желимо да окупимо:</p>
+    <ul style="font-size:13px; line-height:1.6; margin:0; padding-left:20px;">
+      <li>Фитотерапеуте и алтернативне практичаре</li>
+      <li>Пољопривреднике и бераче биља</li>
+      <li>Научнике и ентузијасте</li>
+      <li>Младе који желе да уче и стварају</li>
+    </ul>
+  </div>
+  <div style="break-inside:avoid; margin-bottom:20px;">
+    <strong style="font-size:14px;">5. Подигнемо свест о целовитом здрављу</strong>
+    <p style="font-size:13px; line-height:1.55; margin:4px 0 0;">Здравље није само одсуство болести. То је баланс тела, ума и духа. Фитотерапија је мост између природе и здравља.</p>
+  </div>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">Фитотерапија / Лековите биљке</h2>
+  <ul style="font-size:13.5px; line-height:1.7; margin:0 0 20px; padding-left:20px;">
+    <li>Алфабетни водич – описи биљака, како се користе, где расту</li>
+    <li>Здравље и биље – биље по тегобама (нпр. несаница, кожа, имунитет)</li>
+    <li>Народни рецепти</li>
+    <li>Упозорења и контраиндикације</li>
+  </ul>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">Митологија и симболика биља</h2>
+  <p style="font-size:13.5px; line-height:1.6; margin:0 0 12px;">Биљке у српским митовима и народним предањима.</p>
+  <ul style="font-size:13.5px; line-height:1.7; margin:0 0 12px; padding-left:20px;">
+    <li><em>Босиљак</em> — Света биљка</li>
+    <li><em>Перуника</em> — Цвет грома</li>
+    <li><em>Глог</em> — Заштита од зла</li>
+  </ul>
+  <p style="font-size:13.5px; line-height:1.6; margin:0 0 20px;">Биљке у словенској духовности. Астролошке и архетипске повезаности.</p>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">Енергетски кодови и светле тачке Србије</h2>
+  <p style="font-size:13.5px; line-height:1.6; margin:0 0 12px;">Мапа Србије са енергетски важним локалитетима.</p>
+  <ul style="font-size:13.5px; line-height:1.7; margin:0 0 8px; padding-left:20px;">
+    <li><strong>Ртањ</strong> — Планина високе фреквенције</li>
+    <li><strong>Стара планина</strong> — Вода, биље и мит</li>
+    <li><strong>Ђавоља варош</strong> — Земљина памћење</li>
+    <li><strong>Копаоник</strong> — „Планина светлости"</li>
+  </ul>
+  <p style="font-size:13px; line-height:1.6; margin:0 0 20px; opacity:0.75;">+ интерактивна мапа са подацима о лековитом биљу по регијама</p>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">Едукације и догађаји</h2>
+  <ul style="font-size:13.5px; line-height:1.7; margin:0 0 20px; padding-left:20px;">
+    <li>Онлајн курсеви фитотерапије</li>
+    <li>Теренске радионице: брање и сушење биља</li>
+    <li>Душевно биље – медитација уз биљке</li>
+    <li>Предавања из области етноботанике и древне медицине</li>
+  </ul>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">Блог / Новости</h2>
+  <ul style="font-size:13.5px; line-height:1.7; margin:0 0 20px; padding-left:20px;">
+    <li>Савети, истраживања, народне приче</li>
+    <li>Сезонски текстови о биљу (нпр. „Пролећно чишћење јетре биљкама из дворишта")</li>
+    <li>Интервјуи са стручњацима</li>
+  </ul>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">Биљна апотека (онлајн шоп)</h2>
+  <ul style="font-size:13.5px; line-height:1.7; margin:0 0 20px; padding-left:20px;">
+    <li>Чајеви, тинктуре, мелеми (по закону: инфо карактер, без здравствених тврдњи)</li>
+    <li>Едукативни материјал (књиге, брошуре)</li>
+    <li>Приступ затвореним предавањима</li>
+  </ul>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">Чланство и волонтери</h2>
+  <ul style="font-size:13.5px; line-height:1.7; margin:0 0 12px; padding-left:20px;">
+    <li>Како постати члан Друштва</li>
+    <li>Могућност волонтирања на теренским истраживањима</li>
+    <li>Приступ затвореним базама знања</li>
+  </ul>
+  <p style="font-size:14px; font-style:italic; margin:0 0 8px; font-family:'Newsreader', serif;">Постани део покрета</p>
+  <p style="font-size:13.5px; line-height:1.6; margin:0 0 8px;">Ако верујеш у моћ биља, у вредност знања предака и у лепоту једноставног, здравог живота — придружи нам се.</p>
+  <p style="font-size:13.5px; line-height:1.6; margin:0 0 24px;">Буди део удружења које чува, подучава и штити.</p>
+
+  <h2 style="font-size:19px; font-weight:600; break-after:avoid; margin:24px 0 10px;">Контакт и сарадња</h2>
+  <ul style="font-size:13.5px; line-height:1.7; margin:0; padding-left:20px;">
+    <li>Контакт форма</li>
+    <li>Локација Друштва (ако постоји физичко седиште)</li>
+    <li>Партнери, донације, сарадње са школама, општинама, факултетима</li>
+  </ul>
+
+</x-import>
+
+</x-dc>
+</body>
+</html>
