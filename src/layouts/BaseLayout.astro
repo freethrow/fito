@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { plain } from '../lib/utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string | null;
+  type?: 'website' | 'article';
+}
+
+const SITE_NAME = 'Друштво за фитотерапију Србије';
+const DEFAULT_DESCRIPTION =
+  'Друштво за фитотерапију Србије промовише, едукује и подстиче употребу лековитог биља и чува традицију народне медицине Србије.';
+
+const { title, description, image, type = 'website' } = Astro.props;
+const fullTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME;
+const desc = plain(description || DEFAULT_DESCRIPTION);
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image || '/og-default.jpg', Astro.site);
+---
+
+<!doctype html>
+<html lang="sr" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={title || SITE_NAME} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="sr_RS" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <ContactSection />
+  </body>
+</html>

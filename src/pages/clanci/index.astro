@@ -1,0 +1,49 @@
+---
+/**
+ * List of articles ("Чланци") from DatoCMS.
+ * When there are no published articles nothing is listed and no menu item
+ * or home-page block links here.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CmsImg from '../../components/CmsImg.astro';
+import { getContent } from '../../lib/content';
+import { formatDate } from '../../lib/utils';
+
+const { articles, sections } = await getContent();
+const title = 'Чланци';
+---
+
+<BaseLayout title={title} description={sections.blog.text || 'Чланци Друштва за фитотерапију Србије.'}>
+  {articles.length === 0 && <meta name="robots" content="noindex" slot="head" />}
+  <section class="bg-cream2 px-5 pt-12 pb-14 text-center md:px-14 md:pt-16 md:pb-[72px]">
+    <h1 class="font-serif text-[32px] leading-[1.15] font-medium md:text-[42px]">{title}</h1>
+  </section>
+
+  {articles.length === 0 && <p class="px-5 py-16 text-center text-body4">Још нема објављених чланака.</p>}
+  {
+    articles.length > 0 && (
+      <section class="mx-auto max-w-[1000px] px-5 py-14 md:px-14 md:py-16">
+        <div class="grid gap-x-8 gap-y-12 md:grid-cols-2">
+          {articles.map((a) => (
+            <article>
+              <a href={`/clanci/${a.slug}`} class="group block">
+                {a.cover && (
+                  <div class="mb-5 aspect-[16/9] overflow-hidden rounded-lg border border-line">
+                    <CmsImg image={a.cover} alt={a.title} width={460} height={259} class="transition duration-500 group-hover:scale-[1.03]" />
+                  </div>
+                )}
+                <div class="mb-2 text-xs font-bold tracking-[1.2px] text-gold uppercase">
+                  <time datetime={a.date}>{formatDate(a.date)}</time>
+                  {a.author && <span class="text-body4"> · {a.author}</span>}
+                </div>
+                <h2 class="mb-2 font-serif text-[22px] leading-snug font-medium text-heading group-hover:text-brand">{a.title}</h2>
+                {a.excerpt && <p class="text-[15px] leading-[1.65] text-body3">{a.excerpt}</p>}
+                <span class="mt-3 inline-block text-sm font-bold text-brand">Прочитај →</span>
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

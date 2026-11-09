@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CmsImg from '../../components/CmsImg.astro';
+import Prose from '../../components/Prose.astro';
+import { getContent } from '../../lib/content';
+import { formatDate, imgUrl } from '../../lib/utils';
+import type { Article } from '../../lib/datocms';
+
+// One page per published article. No articles → no pages.
+export async function getStaticPaths() {
+  const { articles } = await getContent();
+  return articles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
+}
+
+interface Props {
+  article: Article;
+}
+const { article } = Astro.props;
+const { articles } = await getContent();
+const others = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
+---
+
+<BaseLayout title={article.title} description={article.excerpt ?? undefined} type="article" image={article.cover ? imgUrl(article.cover, 1200, 630) : null}>
+  <article>
+    <header class="bg-cream2 px-5 pt-10 pb-12 md:px-14 md:pt-14 md:pb-16">
+      <div class="mx-auto max-w-[760px] text-center">
+        <a href="/clanci" class="brand-link mb-5 inline-block text-[13px] font-bold">← Сви чланци</a>
+        <h1 class="font-serif text-[30px] leading-[1.15] font-medium md:text-[42px]">{article.title}</h1>
+        {article.excerpt && <p class="mx-auto mt-4 max-w-[640px] text-[16px] leading-[1.7] text-body1 md:text-[17px]">{article.excerpt}</p>}
+        <div class="mt-5 text-sm text-body4">
+          <time datetime={article.date}>{formatDate(article.date)}</time>{article.author && ` · ${article.author}`}
+        </div>
+      </div>
+    </header>
+
+    {
+      article.cover && (
+        <div class="mx-auto max-w-[960px] px-5 pt-10 md:px-14">
+          <div class="aspect-[16/9] overflow-hidden rounded-lg">
+            <CmsImg image={article.cover} alt={article.title} width={960} height={540} eager />
+          </div>
+        </div>
+      )
+    }
+
+    <div class="mx-auto max-w-[720px] px-5 py-12 md:px-0 md:py-16">
+      <Prose text={article.body} class="md:text-[16.5px]" />
+    </div>
+  </article>
+
+  {
+    others.length > 0 && (
+      <section class="border-t border-line px-5 py-12 md:px-14">
+        <div class="mx-auto max-w-[900px]">
+          <h2 class="mb-6 text-center font-serif text-2xl font-medium">Прочитајте још</h2>
+          <ul class="grid gap-4 md:grid-cols-3">
+            {others.map((a) => (
+              <li>
+                <a href={`/clanci/${a.slug}`} class="block rounded-lg border border-line bg-card p-5 hover:border-outline">
+                  <time datetime={a.date} class="text-xs font-bold tracking-[1.2px] text-gold uppercase">{formatDate(a.date)}</time>
+                  <div class="mt-1 font-serif text-[17px] leading-snug font-medium text-heading">{a.title}</div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

@@ -1,28 +1,49 @@
-# Фитотерапеутско удружење Србије
+# Друштво за фитотерапију Србије — website
 
-Static one-page site for the Phytotherapy Association of Serbia, built with Tailwind CSS (via CDN) — no build step required.
+The one-page design from this repository, rebuilt with **[Astro](https://astro.build)**
+and **[DatoCMS](https://www.datocms.com)**:
+
+- **Home page** — every part (hero, О нама, Митологија … Контакт) is a named
+  **Секција** record in DatoCMS. Sections not (yet) in DatoCMS show the
+  original design text.
+- **Чланци** (`/clanci`) — articles in Serbian from DatoCMS. With no published
+  articles, nothing about articles appears on the site.
+
+| Guide | |
+|---|---|
+| **[DATOCMS.md](DATOCMS.md)** | everything about DatoCMS: project, tokens, structure (automatic or by hand), editing sections, writing articles, images, troubleshooting |
+| **[NETLIFY.md](NETLIFY.md)** | deploying on Netlify, automatic rebuilds on publish, custom domain |
+
+## Quick start
+
+```bash
+npm install
+npm run dev          # http://localhost:4321
+```
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | local development server |
+| `npm run build` | builds the static site into `dist/` |
+| `npm run preview` | serves `dist/` locally |
+| `npm run check` | TypeScript / Astro checks |
+| `npm run cms:setup` | creates the DatoCMS models and the 13 sections (once; safe to repeat) |
 
 ## Structure
 
-- `index.html` — the site (self-contained, loads Tailwind + Google Fonts from CDN)
-- `logo.svg` — association seal logo, used in the header and hero
-- `video.mp4` — background video for the hero section
-- `design-source/` — original design-tool export, kept for reference only; not used by the live site
-
-## Local preview
-
-Open `index.html` directly in a browser, or serve it locally:
-
-```bash
-python -m http.server 4173
+```
+src/
+  lib/sections.ts       section keys, menu labels, original design text (fallback)
+  lib/datocms.ts        GraphQL query to DatoCMS
+  lib/content.ts        loads sections + articles once per build
+  pages/index.astro     the home page, section by section
+  pages/clanci/         articles list and article pages
+  components/           header, contact band, cards
+  styles/global.css     Tailwind theme (colours from the design)
+scripts/datocms-setup.ts  creates the DatoCMS structure
+public/                 video, favicons, social image
 ```
 
-Then visit `http://localhost:4173`.
-
-## Deploying to GitHub Pages
-
-1. Push this repo to GitHub.
-2. In the repo, go to **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to `Deploy from a branch`.
-4. Select the `main` branch and `/ (root)` folder, then **Save**.
-5. The site will be published at `https://<username>.github.io/<repo-name>/`.
+Heading font: **Literata** instead of Newsreader — Newsreader has no Cyrillic
+letters, so the original headings fell back to a system font. Fonts are
+self-hosted.

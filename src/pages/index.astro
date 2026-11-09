@@ -1,0 +1,263 @@
+---
+/**
+ * Home page — the original one-page design. Every block below reads one
+ * named section ("Секција" in DatoCMS); see src/lib/sections.ts for the keys.
+ * Parts left empty in DatoCMS are simply not shown.
+ */
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Prose from '../components/Prose.astro';
+import Pills from '../components/Pills.astro';
+import CmsImg from '../components/CmsImg.astro';
+import logo from '../assets/logofito.png';
+import { getContent } from '../lib/content';
+import { formatDate, mdInline } from '../lib/utils';
+
+const { sections: s, articles } = await getContent();
+const latest = articles.slice(0, 3);
+const show = (key: keyof typeof s) => s[key].visible;
+---
+
+<BaseLayout>
+  <!-- HERO -->
+  {
+    show('hero') && (
+      <section class="relative overflow-hidden">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+          class="absolute inset-0 h-full w-full object-cover"
+          style="filter: saturate(0.7) brightness(0.95) sepia(0.08);"
+        >
+          <source src="/video.mp4" type="video/mp4" />
+        </video>
+        <div class="absolute inset-0 bg-cream/[0.82]" />
+        <div class="relative mx-auto flex max-w-[1200px] flex-col items-center justify-center gap-10 px-5 py-16 text-center md:px-14 md:py-[80px] md:pb-[60px] lg:flex-row lg:gap-16 lg:text-left">
+          <div class="shrink-0">
+            <Image src={logo} width={300} height={300} densities={[1, 2]} alt="Лого — Друштво за фитотерапију Србије" loading="eager" class="h-[180px] w-[180px] md:h-[300px] md:w-[300px]" />
+          </div>
+          <div class="max-w-[480px]">
+            {s.hero.kicker && <div class="mb-4 text-[13px] font-bold tracking-[1.5px] text-gold uppercase md:text-sm">{s.hero.kicker}</div>}
+            {s.hero.title && <h1 class="mb-5 font-serif text-[30px] leading-[1.15] font-medium md:text-[42px]">{s.hero.title}</h1>}
+            {s.hero.text && <Prose text={s.hero.text} class="mb-3 text-[15px] leading-[1.65] text-body1 md:text-base" />}
+            {s.hero.subtitle && <p class="mb-7 text-[14px] leading-[1.6] text-sage italic md:text-[15px]">{s.hero.subtitle}</p>}
+            {s.hero.buttonLabel && <a href={s.hero.buttonLink || '#kontakt'} class="btn">{s.hero.buttonLabel}</a>}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- O NAMA -->
+  {
+    show('o-nama') && (
+      <section id="o-nama" class="scroll-mt-20 bg-cream2 px-5 py-16 md:px-14 md:py-[80px]">
+        <div class="mx-auto max-w-[820px]">
+          <h2 class="h2 mb-6 text-center">{s['o-nama'].title}</h2>
+          <Prose text={s['o-nama'].text} class="mb-[30px] text-[15px] leading-[1.75] md:text-base" />
+          {s['o-nama'].subtitle && <div class="mb-4 text-[17px] font-bold">{s['o-nama'].subtitle}</div>}
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-4">
+            {s['o-nama'].items.map((i) => (
+              <div class="flex items-start gap-3">
+                <div class="mt-2 h-[7px] w-[7px] shrink-0 rounded-full bg-golddot" />
+                <div class="text-[15px] leading-[1.55] text-body2">
+                  <span set:html={mdInline(i.title)} />
+                  {i.text && <span class="block text-[14px] text-body4" set:html={mdInline(i.text)} />}
+                </div>
+              </div>
+            ))}
+          </div>
+          {s['o-nama'].note && <Prose text={s['o-nama'].note} class="mt-8 text-center text-[14.5px] text-body4" />}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- CITAT -->
+  {
+    show('citat') && (
+      <section id="citat" class="mx-auto max-w-[760px] px-5 py-16 text-center md:px-14 md:py-[72px]">
+        {s.citat.title && <p class="mb-5 font-serif text-[20px] leading-[1.5] text-heading italic md:text-2xl">{s.citat.title}</p>}
+        <Prose text={s.citat.text} class="text-[15px] leading-[1.7] text-body3 md:text-[15.5px]" />
+      </section>
+    )
+  }
+
+  <!-- ZASTO JE VAZNA -->
+  {
+    show('zasto-vazna') && (
+      <section id="zasto-vazna" class="bg-cream2 px-5 py-16 md:px-14 md:py-[88px]">
+        <div class="mx-auto max-w-[1100px]">
+          <h2 class="h2 mb-4 text-center">{s['zasto-vazna'].title}</h2>
+          {s['zasto-vazna'].subtitle && <div class="mb-4 text-center text-base text-sage italic">{s['zasto-vazna'].subtitle}</div>}
+          <Prose text={s['zasto-vazna'].text} class="mx-auto mb-10 max-w-[760px] text-center text-[15px] leading-[1.7] text-body3 md:text-[15.5px]" />
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-8">
+            {s['zasto-vazna'].items.map((i, n) => (
+              <div>
+                <h3 class="mb-2 font-serif text-[18px] font-semibold text-heading">{n + 1}. {i.title}</h3>
+                <Prose text={i.text} class="item-prose" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- ZASTO BAS UDRUZENJE -->
+  {
+    show('zasto-udruzenje') && (
+      <section id="zasto-udruzenje" class="mx-auto max-w-[1100px] px-5 py-16 md:px-14 md:py-[88px]">
+        <h2 class="h2 mb-2 text-center">{s['zasto-udruzenje'].title}</h2>
+        {s['zasto-udruzenje'].subtitle && <div class="mb-[18px] text-center text-base text-sage italic">{s['zasto-udruzenje'].subtitle}</div>}
+        <Prose text={s['zasto-udruzenje'].text} class="mx-auto mb-11 max-w-[760px] text-center text-[15px] leading-[1.7] text-body3 md:text-[15.5px]" />
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-9">
+          {s['zasto-udruzenje'].items.map((i, n) => (
+            <div>
+              <h3 class="mb-2 text-[17px] font-bold">{n + 1}. {i.title}</h3>
+              <Prose text={i.text} class="item-prose" />
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- FITOTERAPIJA / LEKOVITE BILJKE -->
+  {
+    show('bilje') && (
+      <section id="bilje" class="scroll-mt-20 bg-cream2 px-5 py-16 md:px-14 md:py-[88px]">
+        <div class="mx-auto max-w-[1000px]">
+          <h2 class="h2 mb-9 text-center">{s.bilje.title}</h2>
+          <Prose text={s.bilje.text} class="mx-auto -mt-4 mb-9 max-w-[700px] text-center text-[15px] text-body1" />
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-6">
+            {s.bilje.items.map((i) => (
+              <div class="rounded-lg border border-line bg-card p-[22px]">
+                <div class="text-base font-bold" set:html={mdInline(i.title)} />
+                {i.text && <Prose text={i.text} class="item-prose mt-2" />}
+              </div>
+            ))}
+          </div>
+          {s.bilje.note && <Prose text={s.bilje.note} class="mt-8 text-center text-[14.5px] text-body4" />}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- MITOLOGIJA -->
+  {
+    show('mitologija') && (
+      <section id="mitologija" class="mx-auto max-w-[1000px] scroll-mt-20 px-5 py-16 md:px-14 md:py-[88px]">
+        <h2 class="h2 mb-5 text-center">{s.mitologija.title}</h2>
+        <Prose text={s.mitologija.text} class="mx-auto mb-3 max-w-[700px] text-center text-[15px] leading-[1.7] text-body1 md:text-[15.5px]" />
+        <div class="my-8 grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-6">
+          {s.mitologija.items.map((i) => (
+            <div class="rounded-lg border border-line bg-card px-[18px] py-[26px] text-center">
+              <div class="mb-2 font-serif text-lg italic">{i.title}</div>
+              {i.text && <div class="text-sm text-body4" set:html={mdInline(i.text)} />}
+            </div>
+          ))}
+        </div>
+        <Prose text={s.mitologija.note} class="mx-auto max-w-[700px] text-center text-[14.5px] leading-[1.7] text-body4" />
+      </section>
+    )
+  }
+
+  <!-- ENERGETSKI KODOVI -->
+  {
+    show('energetski-kodovi') && (
+      <section id="energetski-kodovi" class="scroll-mt-20 bg-dark px-5 py-16 text-darktext md:px-14 md:py-[88px]">
+        <div class="mx-auto max-w-[1000px]">
+          <h2 class="h2 mb-5 text-center">{s['energetski-kodovi'].title}</h2>
+          <Prose text={s['energetski-kodovi'].text} class="dark-prose mx-auto mb-10 max-w-[700px] text-center text-[15px] leading-[1.7] opacity-80" />
+          <div class="mb-8 grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-7">
+            {s['energetski-kodovi'].items.map((i) => (
+              <div>
+                <div class="mb-2 text-base font-bold text-darkaccent">{i.title}</div>
+                {i.text && <div class="dark-prose text-sm leading-[1.55] opacity-85" set:html={mdInline(i.text)} />}
+              </div>
+            ))}
+          </div>
+          <Prose text={s['energetski-kodovi'].note} class="dark-prose text-center text-sm opacity-75" />
+        </div>
+      </section>
+    )
+  }
+
+  <!-- EDUKACIJE -->
+  {
+    show('edukacije') && (
+      <section id="edukacije" class="mx-auto max-w-[900px] scroll-mt-20 px-5 py-16 text-center md:px-14 md:py-[80px]">
+        <h2 class="h2 mb-8">{s.edukacije.title}</h2>
+        <Prose text={s.edukacije.text} class="mx-auto -mt-3 mb-8 max-w-[680px] text-[15px] text-body1" />
+        <Pills items={s.edukacije.items} />
+        {s.edukacije.note && <Prose text={s.edukacije.note} class="mt-8 text-[14.5px] text-body4" />}
+      </section>
+    )
+  }
+
+  <!-- BLOG — shows the latest articles when there are any -->
+  {
+    show('blog') && (
+      <section id="blog" class="mx-auto max-w-[900px] scroll-mt-20 bg-cream2 px-5 py-16 text-center md:px-14 md:py-[80px]">
+        <h2 class="h2 mb-8">{s.blog.title}</h2>
+        <Prose text={s.blog.text} class="mx-auto -mt-3 mb-8 max-w-[680px] text-[15px] text-body1" />
+        <Pills items={s.blog.items} narrow />
+        {
+          latest.length > 0 && (
+            <>
+              <div class="mt-10 grid gap-5 text-left md:grid-cols-3">
+                {latest.map((a) => (
+                  <a href={`/clanci/${a.slug}`} class="group flex flex-col overflow-hidden rounded-lg border border-line bg-card transition hover:border-outline">
+                    {a.cover && (
+                      <div class="aspect-[16/10] overflow-hidden">
+                        <CmsImg image={a.cover} alt={a.title} width={300} height={188} />
+                      </div>
+                    )}
+                    <div class="p-4">
+                      <time datetime={a.date} class="text-xs font-bold tracking-[1.2px] text-gold uppercase">{formatDate(a.date)}</time>
+                      <div class="mt-1 font-serif text-[17px] leading-snug font-medium text-heading group-hover:text-brand">{a.title}</div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+              <a href="/clanci" class="btn mt-8">{s.blog.buttonLabel || 'Сви чланци'}</a>
+            </>
+          )
+        }
+      </section>
+    )
+  }
+
+  <!-- APOTEKA -->
+  {
+    show('apoteka') && (
+      <section id="apoteka" class="mx-auto max-w-[900px] scroll-mt-20 px-5 py-16 text-center md:px-14 md:py-[80px]">
+        <h2 class="h2 mb-8">{s.apoteka.title}</h2>
+        <Prose text={s.apoteka.text} class="mx-auto -mt-3 mb-8 max-w-[680px] text-[15px] text-body1" />
+        <Pills items={s.apoteka.items} narrow />
+        {s.apoteka.note && <Prose text={s.apoteka.note} class="mt-8 text-[14.5px] text-body4" />}
+        {s.apoteka.buttonLabel && s.apoteka.buttonLink && <a href={s.apoteka.buttonLink} class="btn mt-8">{s.apoteka.buttonLabel}</a>}
+      </section>
+    )
+  }
+
+  <!-- CLANSTVO -->
+  {
+    show('clanstvo') && (
+      <section id="clanstvo" class="scroll-mt-20 bg-member px-5 py-16 md:px-14 md:py-[80px]">
+        <div class="mx-auto max-w-[900px] text-center">
+          <h2 class="h2 mb-5">{s.clanstvo.title}</h2>
+          <Pills items={s.clanstvo.items} variant="member" narrow class="mb-9" />
+          {s.clanstvo.subtitle && <p class="mb-3 font-serif text-xl text-heading italic">{s.clanstvo.subtitle}</p>}
+          <Prose text={s.clanstvo.text} class="member-prose mx-auto mb-7 max-w-[600px] text-[15px] leading-[1.6] text-membertext md:text-[15.5px]" />
+          {s.clanstvo.buttonLabel && <a href={s.clanstvo.buttonLink || '#kontakt'} class="btn px-8">{s.clanstvo.buttonLabel}</a>}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

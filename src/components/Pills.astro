@@ -1,0 +1,32 @@
+---
+/** Row of rounded "cards" used by several sections of the design. */
+import type { SectionItem } from '../lib/sections';
+import { mdInline } from '../lib/utils';
+
+interface Props {
+  items: SectionItem[];
+  variant?: 'outline' | 'member';
+  narrow?: boolean;
+  class?: string;
+}
+const { items, variant = 'outline', narrow = false, class: className } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <div class:list={['flex flex-wrap justify-center gap-[14px]', className]}>
+      {items.map((i) => (
+        <div
+          class:list={[
+            'rounded-md px-[22px] py-[14px] text-[14.5px] font-semibold',
+            variant === 'outline' ? 'border-[1.5px] border-outline text-heading' : 'bg-card text-membertext',
+            narrow && 'max-w-[280px]',
+          ]}
+        >
+          <span set:html={mdInline(i.title)} />
+          {i.text && <span class="mt-1 block text-[13.5px] font-normal opacity-85" set:html={mdInline(i.text)} />}
+        </div>
+      ))}
+    </div>
+  )
+}

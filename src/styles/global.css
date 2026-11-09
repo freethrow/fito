@@ -1,0 +1,127 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/manrope';
+@import '@fontsource-variable/literata';
+@import '@fontsource-variable/literata/wght-italic.css';
+
+/* Design tokens from the original design (index.html).
+   Heading font: Literata instead of Newsreader — Newsreader has no Cyrillic. */
+@theme {
+  --font-serif: 'Literata Variable', Georgia, serif;
+  --font-sans: 'Manrope Variable', system-ui, sans-serif;
+
+  --color-cream: oklch(0.97 0.012 95);
+  --color-cream2: oklch(0.94 0.02 110);
+  --color-ink: oklch(0.27 0.02 90);
+  --color-line: oklch(0.88 0.015 95);
+  --color-brand: oklch(0.42 0.09 145);
+  --color-brand-dark: oklch(0.35 0.09 145);
+  --color-gold: oklch(0.5 0.08 55);
+  --color-golddot: oklch(0.5 0.09 55);
+  --color-body1: oklch(0.4 0.02 90);
+  --color-body2: oklch(0.38 0.02 90);
+  --color-body3: oklch(0.42 0.02 90);
+  --color-body4: oklch(0.45 0.02 90);
+  --color-sage: oklch(0.42 0.03 140);
+  --color-heading: oklch(0.3 0.05 140);
+  --color-card: oklch(0.99 0.005 95);
+  --color-dark: oklch(0.24 0.02 100);
+  --color-darktext: oklch(0.92 0.01 95);
+  --color-darkaccent: oklch(0.75 0.08 140);
+  --color-member: oklch(0.9 0.035 140);
+  --color-membertext: oklch(0.32 0.03 140);
+  --color-outline: oklch(0.8 0.02 90);
+}
+
+@layer base {
+  body {
+    @apply m-0 min-h-screen bg-cream font-sans text-ink antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .brand-link {
+    @apply text-brand no-underline hover:text-brand-dark;
+  }
+  .btn {
+    @apply inline-block rounded bg-brand px-7 py-[14px] text-[15px] font-semibold text-cream transition-colors hover:bg-brand-dark;
+  }
+  .h2 {
+    @apply font-serif text-[26px] font-medium md:text-[30px];
+  }
+
+  /* Text written in DatoCMS (Markdown) */
+  .prose {
+    @apply text-[15.5px] leading-[1.75] text-body2;
+  }
+  .prose > * + * {
+    @apply mt-[18px];
+  }
+  .prose h2 {
+    @apply mt-10 mb-3 font-serif text-[22px] font-medium text-heading md:text-2xl;
+  }
+  .prose h3 {
+    @apply mt-8 mb-2 font-serif text-lg font-semibold text-heading;
+  }
+  .prose a {
+    @apply text-brand underline decoration-1 underline-offset-2 hover:text-brand-dark;
+  }
+  .prose strong {
+    @apply font-bold text-ink;
+  }
+  .prose ul {
+    @apply space-y-1.5;
+  }
+  .prose ul > li {
+    @apply relative list-none pl-5;
+  }
+  .prose ul > li::before {
+    content: '';
+    @apply absolute top-[0.7em] left-0 h-[7px] w-[7px] rounded-full bg-golddot;
+  }
+  .prose ol {
+    @apply list-decimal space-y-1.5 pl-5 marker:font-bold marker:text-gold;
+  }
+  .prose blockquote {
+    @apply border-l-2 border-golddot pl-5 font-serif text-lg text-heading italic;
+  }
+  .prose img {
+    @apply h-auto max-w-full rounded-lg;
+  }
+
+  /* Small text under a numbered heading (sections "Зашто…") — as in the design */
+  .prose.item-prose {
+    @apply text-[14.5px] leading-[1.6] text-body3;
+  }
+  .prose.item-prose > * + * {
+    @apply mt-[10px];
+  }
+  .prose.item-prose ul {
+    @apply list-disc space-y-0 pl-[18px] text-sm leading-[1.7] text-body2;
+  }
+  .prose.item-prose ul > li {
+    @apply list-item pl-0;
+  }
+  .prose.item-prose ul > li::before {
+    content: none;
+  }
+
+  /* Text on dark background */
+  .prose.dark-prose,
+  .dark-prose {
+    color: inherit;
+  }
+  .dark-prose a {
+    @apply text-darkaccent underline underline-offset-2;
+  }
+  .dark-prose strong {
+    color: inherit;
+  }
+
+  .prose.member-prose > * + * {
+    @apply mt-3;
+  }
+}

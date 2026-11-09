@@ -1,0 +1,30 @@
+---
+/** A DatoCMS image, resized by DatoCMS (imgix). Renders nothing without an image. */
+import type { CmsImage } from '../lib/datocms';
+import { imgSrcSet, imgUrl } from '../lib/utils';
+
+interface Props {
+  image: CmsImage | null;
+  alt: string;
+  width: number;
+  height: number;
+  class?: string;
+  eager?: boolean;
+}
+const { image, alt, width, height, class: className, eager = false } = Astro.props;
+---
+
+{
+  image && (
+    <img
+      src={imgUrl(image, width, height)}
+      srcset={imgSrcSet(image, width, height)}
+      alt={image.alt || alt}
+      width={width}
+      height={height}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      class:list={['h-full w-full object-cover', className]}
+    />
+  )
+}
